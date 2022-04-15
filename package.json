@@ -1,0 +1,30 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "check the weather in every city with this app",
+  "source": "src/html/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabver82/weather-app.git"
+  },
+  "author": "Fabien Vermeiren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabver82/weather-app/issues"
+  },
+  "homepage": "https://github.com/fabver82/weather-app#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.4.1",
+    "parcel": "^2.4.1"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "bulma": "^0.9.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
