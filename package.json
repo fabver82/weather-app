@@ -19,7 +19,8 @@
   "homepage": "https://github.com/fabver82/weather-app#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.4.1",
-    "parcel": "^2.4.1"
+    "parcel": "^2.4.1",
+    "process": "^0.11.10"
   },
   "dependencies": {
     "axios": "^0.26.1",

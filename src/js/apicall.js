@@ -1,13 +1,12 @@
 import axios from "axios";
-import { key } from "../js/config";
-async function getWeather(city) {
+import API_KEY from "../js/config";
+export default async function getWeather(city) {
   try {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
     );
-    console.log(response);
+    return response;
   } catch (error) {
     console.error(error);
   }
 }
-export default getWeather;
