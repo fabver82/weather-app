@@ -1,10 +1,14 @@
 import React from "react";
 
-export default function Input({ handleSubmit }) {
+export default function Input({ setCity }) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setCity(event.target[0].value);
+  };
   return (
     <form onSubmit={handleSubmit}>
       <input type="text" placeholder="Type a city" />
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Search" />
     </form>
   );
 }
