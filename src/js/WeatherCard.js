@@ -4,6 +4,9 @@ export default function WeatherCard({ weathers, city }) {
   // console.log(weathers);
   return (
     <table>
+      <tr>
+        <td colSpan="4">{city}</td>
+      </tr>
       {weathers.map((weather) => {
         return (
           <tr>

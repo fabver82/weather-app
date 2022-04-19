@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Input from "../js/Input";
 import WeatherCard from "../js/WeatherCard";
-import getWeather from "../js/apicall";
+import getWeather, { getImage } from "../js/apicall";
 
 export function App() {
   const [city, setCity] = useState("Namur");
@@ -47,6 +47,7 @@ export function App() {
         setWeathers(weathersDatas);
       }
     });
+    getImage(city);
   }, [city]);
   return (
     <div className="App">
