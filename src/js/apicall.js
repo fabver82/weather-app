@@ -8,7 +8,7 @@ async function getCoordinates(city) {
     return { lat: response.data[0].lat, lon: response.data[0].lon };
     // return response;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return { lat: false, lon: false };
   }
 }
@@ -24,9 +24,7 @@ async function getDatas(coordinates) {
   }
 }
 export default async function getWeather(city) {
-  let data;
   let coordinates = await getCoordinates(city);
-  console.log(coordinates);
   if (coordinates.lat != false) {
     return await getDatas(coordinates);
   } else {

@@ -4,10 +4,47 @@ import getWeather from "../js/apicall";
 
 export function App() {
   const [city, setCity] = useState("Namur");
+  const today = new Date();
 
+  //will check minTemp and maxTemp for the same day, return a list of weather datas for the next days.
+  function sortDatas(datas) {
+    const list = [];
+    for (weatherData of datas) {
+      const weatherDay = {
+        date: new Date(weatherData.dt_txt),
+        minTemp: weatherData.main.temp_min,
+        maxTemp: weatherData.main.temp_max,
+        humidity: weatherData.main.humidity,
+        description: weatherData.weather[0].description,
+      };
+      //if first input or next date, add the data in the list
+      if (
+        list.length == 0 ||
+        weatherDay.date.toDateString() !=
+          list[list.length - 1].date.toDateString()
+      ) {
+        list.push(weatherDay);
+      } else {
+        //check if minTemp and maxTemp are different for the next day
+        let previousDay = list[list.length - 1];
+        if (previousDay.minTemp > weatherDay.minTemp) {
+          list[list.length - 1].minTemp = weatherDay.minTemp;
+        }
+        if (previousDay.maxTemp < weatherDay.maxTemp) {
+          list[list.length - 1].maxTemp = weatherDay.maxTemp;
+        }
+      }
+    }
+    return list;
+  }
   useEffect(() => {
-    getWeather(city).then((data) => {
-      console.log(data);
+    getWeather(city).then((datas) => {
+      if (datas === false) {
+        console.log("we didn't found this city");
+      } else {
+        let weathers = sortDatas(datas.data.list);
+        console.log(weathers);
+      }
     });
   }, [city]);
   return (
