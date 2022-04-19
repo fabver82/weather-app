@@ -9,10 +9,11 @@ async function getCoordinates(city) {
     // return response;
   } catch (error) {
     console.error(error);
+    return { lat: false, lon: false };
   }
 }
 async function getDatas(coordinates) {
-  console.log(coordinates);
+  // console.log(coordinates);
   try {
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&exclude=minutely,hourly,alerts&appid=${API_KEY}`
@@ -24,9 +25,11 @@ async function getDatas(coordinates) {
 }
 export default async function getWeather(city) {
   let data;
-  await getCoordinates(city).then(async (lat, lon) => {
-    data = await getDatas(lat, lon);
-    console.log(data);
-  });
-  return data;
+  let coordinates = await getCoordinates(city);
+  console.log(coordinates);
+  if (coordinates.lat != false) {
+    return await getDatas(coordinates);
+  } else {
+    return false;
+  }
 }
