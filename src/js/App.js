@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Input from "../js/Input";
+import WeatherCard from "../js/WeatherCard";
 import getWeather from "../js/apicall";
 
 export function App() {
   const [city, setCity] = useState("Namur");
-  const today = new Date();
+  const [weathers, setWeathers] = useState([]);
 
   //will check minTemp and maxTemp for the same day, return a list of weather datas for the next days.
   function sortDatas(datas) {
@@ -42,14 +43,15 @@ export function App() {
       if (datas === false) {
         console.log("we didn't found this city");
       } else {
-        let weathers = sortDatas(datas.data.list);
-        console.log(weathers);
+        const weathersDatas = sortDatas(datas.data.list);
+        setWeathers(weathersDatas);
       }
     });
   }, [city]);
   return (
     <div className="App">
       <Input setCity={setCity} />
+      <WeatherCard weathers={weathers} city={city} />
     </div>
   );
 }
