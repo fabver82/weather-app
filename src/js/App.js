@@ -6,6 +6,7 @@ import getWeather, { getImage } from "../js/apicall";
 export function App() {
   const [city, setCity] = useState("Namur");
   const [weathers, setWeathers] = useState([]);
+  const [cityImage, setCityImage] = useState();
 
   //will check minTemp and maxTemp for the same day, return a list of weather datas for the next days.
   function sortDatas(datas) {
@@ -47,10 +48,13 @@ export function App() {
         setWeathers(weathersDatas);
       }
     });
-    getImage(city);
+    getImage(city).then((image) => {
+      setCityImage(image);
+    });
   }, [city]);
   return (
     <div className="App">
+      <img src={cityImage} width="300" />
       <Input setCity={setCity} />
       <WeatherCard weathers={weathers} city={city} />
     </div>
