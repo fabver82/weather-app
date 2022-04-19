@@ -54,9 +54,9 @@ export function App() {
   }, [city]);
   return (
     <div className="App">
-      <img src={cityImage} width="300" />
       <Input setCity={setCity} />
       <WeatherCard weathers={weathers} city={city} />
+      <img src={cityImage} width="300" />
     </div>
   );
 }
