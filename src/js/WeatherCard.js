@@ -12,6 +12,7 @@ export default function WeatherCard({ weathers, city }) {
           <tr>
             <td>{weather.date.toDateString()}</td>
             <td>{weather.description}</td>
+            <td>{weather.humidity}</td>
             <td>{weather.minTemp.toString()}</td>
             <td>{weather.maxTemp.toString()}</td>
           </tr>
