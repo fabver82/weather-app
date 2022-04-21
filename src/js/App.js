@@ -2,7 +2,31 @@ import React, { useState, useEffect } from "react";
 import Input from "../js/Input";
 import WeatherCard from "../js/WeatherCard";
 import getWeather, { getImage } from "../js/apicall";
-
+import styled from "styled-components";
+const Container = styled.div`
+  background-image: url("${(props) => props.image}");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 98vh;
+  min-height: 400px;
+  min-width: 372px;
+  max-width: 98vw;
+  margin: 0 auto;
+  border-radius: 15px;
+  margin-top: 10px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+`;
+const Input = styled.input`
+  background-color: red;
+  border: 10px solid red;
+`;
 export function App() {
   const [city, setCity] = useState("Namur");
   const [weathers, setWeathers] = useState([]);
@@ -53,10 +77,9 @@ export function App() {
     });
   }, [city]);
   return (
-    <div className="App">
+    <Container image={cityImage}>
       <Input setCity={setCity} />
       <WeatherCard weathers={weathers} city={city} />
-      <img src={cityImage} width="300" />
-    </div>
+    </Container>
   );
 }
